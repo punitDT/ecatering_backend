@@ -82,7 +82,7 @@ class Location {
         logger.info('!!!!!!UpdateLocation function start!!!!!');
         try {
             const LocationAttributes = req.body;
-            const id = req.params.id;
+            const id = req.query.id;
 
             const location: LocationAttributes = await models.locations.update(LocationAttributes, {
                 where: { id: id }
@@ -110,7 +110,7 @@ class Location {
     async deleteLocation(req: Request, res: Response) {
         logger.info('!!!!!!DeleteLocation function start!!!!!');
         try {
-            const id = req.params.id;
+            const id = req.query.id;
 
             const location: LocationAttributes = await models.locations.update(
                 {

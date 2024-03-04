@@ -82,7 +82,7 @@ class City {
         logger.info('!!!!!!UpdateCity function start!!!!!');
         try {
             const CityAttributes = req.body;
-            const id = req.params.id;
+            const id = req.query.id;
 
             const city: CityAttributes = await models.cities.update(CityAttributes, {
                 where: { id: id }
@@ -110,7 +110,7 @@ class City {
     async deleteCity(req: Request, res: Response) {
         logger.info('!!!!!!DeleteCity function start!!!!!');
         try {
-            const id = req.params.id;
+            const id = req.query.id;
 
             const city: CityAttributes = await models.cities.update(
                 {

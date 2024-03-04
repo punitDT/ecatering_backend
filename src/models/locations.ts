@@ -35,7 +35,7 @@ export default (sequelize: Sequelize, DataTypes: any) => {
                 defaultValue: UUIDV4
             },
             name: {
-                type: DataTypes.STRING,
+                type: DataTypes.JSON,
                 allowNull: false
             },
             city_id: {

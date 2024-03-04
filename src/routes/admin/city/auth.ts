@@ -3,15 +3,15 @@ import city from '../../../controllers/admin/city';
 const router: IRouter = Router();
 
 // list cities
-router.get('/list-cities/:skip?/:limit?', city.listCities);
+router.get('/city', city.listCities);
 
 // add cities
-router.post('/add-city', city.addCity);
+router.post('/city', city.addCity);
 
 // update cities
-router.put('/update-city/:id', city.updateCity);
+router.put('/city', city.updateCity);
 
 // delete cities
-router.delete('/delete-city/:id', city.deleteCity);
+router.delete('/city', city.deleteCity);
 
 export default router;

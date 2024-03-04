@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import models from '../../models';
 import { httpStatusCodes } from '../../utils/constants';
 import { logger } from '../../utils/logger';
-import { LocationAttributes } from 'models/locations';
 import { OccasionAttributes } from 'models/occasions';
 
 class Occasions {
@@ -83,7 +82,7 @@ class Occasions {
         logger.info('!!!!!!UpdateOccasion function start!!!!!');
         try { 
             const OccasionAttributes = req.body;
-            const id = req.params.id;
+            const id = req.query.id;
 
             const occasion: OccasionAttributes = await models.occasions.update(OccasionAttributes, {
                 where: { id: id }
@@ -111,7 +110,7 @@ class Occasions {
     async deleteOccasion(req: Request, res: Response) {
         logger.info('!!!!!!DeleteOccasion function start!!!!!');
         try {
-            const id = req.params.id;
+            const id = req.query.id;
 
             const occasion: OccasionAttributes = await models.occasions.update(
                 {
