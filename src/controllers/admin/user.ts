@@ -2,7 +2,7 @@ import { UserAttributes } from './../../models/users';
 import { logger } from '../../utils/logger';
 import models from '../../models';
 import { Request, Response } from 'express';
-import { httpStatusCodes } from '../../utils/constants';
+import { TOKEN, httpStatusCodes } from '../../utils/constants';
 import { Sequelize } from 'sequelize';
 import jwt from 'jsonwebtoken';
 class User {
@@ -26,7 +26,8 @@ class User {
     async listUsers(req: Request, res: Response) {
         logger.info('!!!!!!listUsers function start!!!!!');
         try {
-            const userData: UserAttributes = await models.user.findOne({
+            const userModel = models.users;
+            const userData: UserAttributes = await userModel.findOne({
                 where: {
                     _deleted: false
                 },
@@ -63,7 +64,7 @@ class User {
         try{
             const userData: UserAttributes = req.body;
             const createUser = await models.users.create(userData);  
-            const token = jwt.sign({ userId: createUser.id , role : 'admin',}, 'your_secret_key',);
+            const token = jwt.sign({ userId: createUser.id , role : 'admin',}, TOKEN,);
             res.json({
                 status: httpStatusCodes.SUCCESS_CODE,
                 message: 'successfully registered',

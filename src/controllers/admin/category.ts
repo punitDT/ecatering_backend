@@ -1,4 +1,4 @@
-import { Categories } from './../../models/categories';
+import { CategoryAttributes } from './../../models/categories';
 import models from '../../models';
 import { Response,Request } from 'express';
 import { httpStatusCodes } from '../../utils/constants';
@@ -12,9 +12,9 @@ class Category{
 async postCategory(req:Request,res:Response) {
 try{  
 
-    const categorydata : Categories = req.body;
+    const categorydata : CategoryAttributes = req.body;
     const  newcategory  = await models.categories;
-    const category : Categories = await newcategory.create(categorydata);
+    const category : CategoryAttributes = await newcategory.create(categorydata);
     res.json({
         status: httpStatusCodes.SUCCESS_CODE,
         message: 'successfully created',
@@ -39,7 +39,7 @@ async getAllCategory(req:Request,res:Response)  {
     try{
         logger.info('Getting all categories');
         const  newcategory  = await models.categories;
-        const category : Categories = await newcategory.findAll(
+        const category : CategoryAttributes = await newcategory.findAll(
             {
                 where: {
                     _deleted: false
@@ -74,10 +74,10 @@ async getAllCategory(req:Request,res:Response)  {
 async updateCategory(req:Request,res:Response) {
     try{
     
-        const categorydata : Categories = req.body;
+        const categorydata : CategoryAttributes = req.body;
     const id = req.query.id;
     const  newcategory  = await models.categories;
-        const category : Categories = await newcategory.update(categorydata,{
+        const category : CategoryAttributes = await newcategory.update(categorydata,{
             where: {id},
         });
         res.json({
@@ -100,10 +100,10 @@ async updateCategory(req:Request,res:Response) {
     async deleteCategory(req:Request,res:Response) {
         try{
         
-            const categorydata : Categories = req.body;
+            const categorydata : CategoryAttributes = req.body;
         const id = req.query.id;
         const  newcategory  = await models.categories;
-            const category : Categories = await newcategory.update({
+            const category : CategoryAttributes = await newcategory.update({
                 _deleted :true,
             } , {
             where: {id},

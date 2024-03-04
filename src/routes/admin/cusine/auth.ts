@@ -1,5 +1,4 @@
-
-import category from '../../../controllers/admin/cusin';
+import category from '../../../controllers/admin/cusine';
 import {  IRouter, Router } from "express";
 
 const router: IRouter = Router();

@@ -1,9 +1,9 @@
 
-import { Cusins } from './cusins';
+import { CusineAttributes } from './cusines';
 
 import { Sequelize, UUIDV4, Model, Optional, BuildOptions } from 'sequelize';
 
-export interface Categories {
+export interface CategoryAttributes {
     id: string; // id is an auto-generated UUID
     category_name: string;
     total_packages: number;
@@ -15,9 +15,9 @@ export interface Categories {
     // cusines?: Cusines[];
 }
 
-interface CategoriesCreationAttributes extends Optional<Categories, 'id'> {}
+interface CategoriesCreationAttributes extends Optional<CategoryAttributes, 'id'> {}
 
-interface CategoriesInstance extends Model<Categories, CategoriesCreationAttributes>, Categories {
+interface CategoriesInstance extends Model<CategoryAttributes, CategoriesCreationAttributes>, CategoryAttributes {
     createdAt?: Date;
     updatedAt?: Date;
 }

@@ -1,18 +1,18 @@
-import models from './../../models';
+import models from '../../models';
 import { httpStatusCodes } from '../../utils/constants';
 import { Request,Response } from 'express';
-import { Cusins } from '../../models/cusins';
+import { CusineAttributes } from '../../models/cusines';
 import { logger } from '../../utils/logger';
-class Cusin{
+class Cusine{
     constructor(){}
 
 
     async postCuisn(req:Request,res:Response) {
         try{  
         
-            const cusinData : Cusins = req.body;
+            const cusinData : CusineAttributes = req.body;
             const  newcategory  = await models.cusins;
-            const category : Cusins = await newcategory.create(cusinData);
+            const category : CusineAttributes = await newcategory.create(cusinData);
             res.json({
                 status: httpStatusCodes.SUCCESS_CODE,
                 message: 'successfully created',
@@ -37,7 +37,7 @@ class Cusin{
             try{
                 logger.info('Getting all categories');
                 const  newcategory  = await models.cusins;
-                const cusin : Cusins = await newcategory.findAll(
+                const cusin : CusineAttributes = await newcategory.findAll(
                     {
                         where: {
                             _deleted: false
@@ -72,10 +72,10 @@ class Cusin{
         async updateCusin(req:Request,res:Response) {
             try{
             
-                const categorydata : Cusins = req.body;
+                const categorydata : CusineAttributes = req.body;
             const id = req.query.id;
             const  newcategory  = await models.cusins;
-                const category : Cusins = await newcategory.update(categorydata,{
+                const category : CusineAttributes = await newcategory.update(categorydata,{
                     where: {id},
                 });
                 res.json({
@@ -98,10 +98,10 @@ class Cusin{
             async deleteCusin(req:Request,res:Response) {
                 try{
                 
-                    const categorydata : Cusins = req.body;
+                    const categorydata : CusineAttributes = req.body;
                 const id = req.query.id;
                 const  newcategory  = await models.cusins;
-                    const category : Cusins = await newcategory.update({
+                    const category : CusineAttributes = await newcategory.update({
                         _deleted :true,
                     } , {
                     where: {id},
@@ -130,4 +130,4 @@ class Cusin{
 
 
 
-export  = new Cusin();
+export  = new Cusine();

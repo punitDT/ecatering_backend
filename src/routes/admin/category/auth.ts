@@ -1,8 +1,17 @@
-import { Router, IRouter } from 'express';
-import user from '../../../controllers/admin/user';
+import category from '../../../controllers/admin/category';
+import {  IRouter, Router } from "express";
+
 const router: IRouter = Router();
 
+
 // users table
-router.get('/list/:skip/:limit', user.listUsers);
+router.get('/category',category.getAllCategory); // get all categories
+
+router.post('/category', category.postCategory);  // post categories
+
+router.put('/category', category.updateCategory);  // update categories
+
+router.delete('/category', category.deleteCategory); // delete categories
+
 
 export default router;
