@@ -5,6 +5,4 @@ const router: IRouter = Router();
 // users table
 router.get('/list/:skip/:limit', user.listUsers);
 
-router.post('/register',user.userRegister);
-
 export default router;

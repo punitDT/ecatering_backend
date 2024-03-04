@@ -14,7 +14,6 @@ export async function tokenHandler(req: Request, res: Response, next: NextFuncti
         // matching null if user dont have saved the token in browser in that case it will be string type of null value
         const authorizedTokenString =
             (req.body && req.body.access_token) || (req.query && req.query.access_token) || req.headers.authorization;
-
         if (!authorizedTokenString) {
             res.status(httpStatusCodes.UNAUTHORIZED_CODE).json({
                 status: httpStatusCodes.UNAUTHORIZED_CODE,
@@ -38,9 +37,10 @@ export async function tokenHandler(req: Request, res: Response, next: NextFuncti
         const docodedData: DecodedType = await new Promise((resolve: any, reject: any) => {
             jwt.verify(accessToken, TOKEN, (err, decoded) => {
                 if (err) {
+                    logger.info(accessToken);
                     reject(err);
                 }
-
+                logger.info(accessToken);
                 resolve(decoded);
             });
         });
