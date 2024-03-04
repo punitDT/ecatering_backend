@@ -6,11 +6,11 @@ import apiV1UnAuthRoutes from './routes/unAuthRoute';
 import apiV1AuthRoutes from './routes/authRoute';
 import { logger, accessSuccessLogger, accessErrorLogger } from './utils/logger';
 import { tokenHandler } from './middlewares';
-import multer from 'multer'; 
+import multer from 'multer';
 import path from 'path';
 import { httpStatusCodes } from './utils/constants';
 const upload = multer();
- 
+
 const app = express();
 
 // register loggers
@@ -28,6 +28,7 @@ app.use(
         credentials: true,
         origin: [
             'http://localhost:3000',
+            'https://192.168.1.0', // for
             'https://brands.wherehouse.io',
             'https://wherehouse-seller-staging.web.app',
             'https://seller-staging-test.web.app'

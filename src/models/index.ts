@@ -3,6 +3,9 @@ import { Sequelize, Op, DataTypes } from 'sequelize';
 import fs from 'fs';
 const basename = path.basename(__filename);
 const db: any = {};
+import dotenv from 'dotenv';
+dotenv.config();
+
 const { DATABASE_NAME, DATABASE_USER, DATABASE_PASS, DATABASE_HOST } = process.env;
 
 // development

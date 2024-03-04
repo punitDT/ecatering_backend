@@ -13,7 +13,7 @@ export interface UserRolesAttributes {
 }
 
 interface UserRolesCreationAttributes extends Optional<UserRolesAttributes, 'id'> {}
-
+// 
 interface UserRolesInstance extends Model<UserRolesAttributes, UserRolesCreationAttributes>, UserRolesAttributes {
     createdAt?: Date;
     updatedAt?: Date;
@@ -24,7 +24,7 @@ type UserRolesStatic = typeof Model & { associate: (models: any) => void } & (ne
         options?: BuildOptions
     ) => UserRolesInstance);
 
-export default (sequelize: Sequelize, DataTypes: any) => {
+export default  (sequelize: Sequelize, DataTypes: any) => {
     const UserRoles = sequelize.define<UserRolesInstance>(
         'user_roles',
         {
@@ -62,8 +62,8 @@ export default (sequelize: Sequelize, DataTypes: any) => {
         });
     };
 
-    // TODO: make common function to sync 
-    //await UserRoles.sync({ alter: true });
+    // TODO: make common function to sync
+    // await UserRoles.sync({ alter: true });
 
     return UserRoles;
 };

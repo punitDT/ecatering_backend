@@ -5,7 +5,7 @@ import { logger } from './utils/logger';
 import cluster from 'cluster';
 import os from 'os';
 import * as http from 'http';
-import { RedisConnection } from './utils/redisConnection';
+import RedisConnection from './utils/redisConnection';
 
 dotenv.config({ path: '../.env ' });
 

@@ -1,8 +1,8 @@
 import * as logger from 'winston';
 import { Request } from 'express';
 import morgan from 'morgan';
-import SentryTransport from './sentry';
-import DiscordTransport from './dicord';
+// import SentryTransport from './sentry';
+// import DiscordTransport from './dicord';
 
 // logger config
 const format = logger.format.combine(
@@ -75,7 +75,7 @@ const accessSuccessLogger: any = morgan(formatVerbose, {
 });
 
 // env level filtering is disabled currently
-logger.add(new SentryTransport({ level: 'error', handleExceptions: true }));
-logger.add(new DiscordTransport({ level: 'error', handleExceptions: true }));
+// logger.add(new SentryTransport({ level: 'error', handleExceptions: true }));
+// logger.add(new DiscordTransport({ level: 'error', handleExceptions: true }));
 
 export { logger, accessSuccessLogger, accessErrorLogger };
