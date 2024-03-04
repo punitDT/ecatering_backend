@@ -1,4 +1,5 @@
 import { Sequelize, UUIDV4, Model, Optional, BuildOptions } from 'sequelize';
+import { UserRolesAttributes } from './user_roles';
 
 export interface UserAttributes {
     id: string; // id is an auto-generated UUID
@@ -6,10 +7,11 @@ export interface UserAttributes {
     last_name: string;
     email: string;
     phone: string;
-    is_active: boolean;
     _deleted: boolean;
     createdAt?: Date;
     updatedAt?: Date;
+    // Association Fields
+    userRole?: UserRolesAttributes[];
 }
 
 interface UserCreationAttributes extends Optional<UserAttributes, 'id'> {}
@@ -50,17 +52,11 @@ export default (sequelize: Sequelize, DataTypes: any) => {
                 type: DataTypes.STRING,
                 allowNull: false
             },
-            is_active: {
-                type: DataTypes.BOOLEAN,
-                allowNull: false,
-                defaultValue: false
-            },
             _deleted: {
                 type: DataTypes.BOOLEAN,
                 allowNull: true,
                 defaultValue: false
             }
-        
         },
         {
             freezeTableName: true
@@ -80,4 +76,4 @@ export default (sequelize: Sequelize, DataTypes: any) => {
     // await Users.sync({ alter: true });
 
     return Users;
-}; 
+};

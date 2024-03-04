@@ -91,12 +91,18 @@ export default (sequelize: Sequelize, DataTypes: any) => {
             foreignKey: 'location_id',
             onDelete: 'CASCADE',
             onUpdate: 'CASCADE',
+        });
+
+        Occasions.hasOne(models.packages, {
+            foreignKey: 'location_id',
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE',
             as: 'userRole'
         });
     };
 
     // TODO: make common function to sync
     // await Occasions.sync({ alter: true });
-
+ 
     return Occasions;
 };

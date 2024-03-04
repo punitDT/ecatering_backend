@@ -122,20 +122,18 @@ export default (sequelize: Sequelize, DataTypes: any) => {
             foreignKey: 'location_id',
             onDelete: 'CASCADE',
             onUpdate: 'CASCADE',
-            as: 'userRole'
         });
 
-        // MenuItems.belongsTo(models.cuisine, {
-        //     foreignKey: 'cuisine_id',
-        //     onDelete: 'CASCADE',
-        //     onUpdate: 'CASCADE',
-        //     as: 'userRole'
-        // });
+        MenuItems.hasMany(models.package_menu_items, {
+            foreignKey: 'menu_item_id',
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE',
+        });
 
     };
 
     // TODO: make common function to sync
     // await MenuItems.sync({ alter: true });
 
-    return MenuItems;
+    return MenuItems; 
 };

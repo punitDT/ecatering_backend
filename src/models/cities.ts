@@ -23,7 +23,7 @@ type CityStatic = typeof Model & { associate: (models: any) => void } & (new (
         options?: BuildOptions
     ) => CityInstance);
 
-export default (sequelize: Sequelize, DataTypes: any) => {
+export default  (sequelize: Sequelize, DataTypes: any) => {
     const Cities = sequelize.define<CityInstance>(
         'cities',
         {
@@ -67,7 +67,7 @@ export default (sequelize: Sequelize, DataTypes: any) => {
         });
     };
 
-    Cities.sync({ alter: true });
+    //await Cities.sync({ alter: true }); 
 
     return Cities;
 };

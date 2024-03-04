@@ -31,8 +31,8 @@ class SentryTransport extends Transport {
     }
 
     log(err, callback) {
-        // logToSentry(err);
-        // callback();
+        //logToSentry(err);
+        //callback();
     }
 }
 

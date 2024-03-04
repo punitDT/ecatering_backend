@@ -6,11 +6,11 @@ import apiV1UnAuthRoutes from './routes/unAuthRoute';
 import apiV1AuthRoutes from './routes/authRoute';
 import { logger, accessSuccessLogger, accessErrorLogger } from './utils/logger';
 import { tokenHandler } from './middlewares';
-import multer from 'multer'; 
+import multer from 'multer';
 import path from 'path';
 import { httpStatusCodes } from './utils/constants';
 const upload = multer();
- 
+
 const app = express();
 
 // register loggers

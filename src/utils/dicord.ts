@@ -19,8 +19,8 @@ class DiscordTransport extends Transport {
     }
 
     log(err, callback) {
-        // logToDiscord(err);
-        // callback();
+        //logToDiscord(err);
+        //callback();
     }
 }
 

@@ -79,8 +79,13 @@ export default (sequelize: Sequelize, DataTypes: any) => {
             onUpdate: 'CASCADE',
         });
 
-
         Locations.hasMany(models.menu_items, {
+            foreignKey: 'location_id',
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE',
+        });
+
+        Locations.hasMany(models.packages, { 
             foreignKey: 'location_id',
             onDelete: 'CASCADE',
             onUpdate: 'CASCADE',

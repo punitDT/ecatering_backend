@@ -7,7 +7,7 @@ import os from 'os';
 import * as http from 'http';
 import { RedisConnection } from './utils/redisConnection';
 
-dotenv.config({ path: '../.env ' }); 
+dotenv.config({ path: '../.env ' });
 
 // libuv's threadpool have a default of 4 threads for async operations so we are changing it based on cpu cores
 process.env.UV_THREADPOOL_SIZE = String(os.cpus().length);

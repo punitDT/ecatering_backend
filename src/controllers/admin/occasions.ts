@@ -3,25 +3,26 @@ import models from '../../models';
 import { httpStatusCodes } from '../../utils/constants';
 import { logger } from '../../utils/logger';
 import { LocationAttributes } from 'models/locations';
+import { OccasionAttributes } from 'models/occasions';
 
-class Location {
+class Occasions {
     /* 
         --------------------------------------------------------------------------------
-        Location functions 
+        Occasions functions 
     */
 
     /**
-     * @api {get} /v1/location/list-locations/:skip/:limit (List All Locations)
-     * @apiName listLocations
-     * @apiGroup AdminLocations
+     * @api {get} /v1/occasions/list-occasions/:skip/:limit (List All Occasions)
+     * @apiName listOccasions
+     * @apiGroup AdminOccasions
      *
      *
-     * @apiSuccess {Object} Locations.
+     * @apiSuccess {Object} Occasions.
      */
-    async listLocations(req: Request, res: Response) {
-        logger.info('!!!!!!listLocations function start!!!!!');
+    async listOccasions(req: Request, res: Response) {
+        logger.info('!!!!!!listOccasions function start!!!!!');
         try {
-            const locationData: LocationAttributes = await models.locations.findAll({
+            const occasionsData: OccasionAttributes = await models.occasions.findAll({
                 where: {
                     _deleted: false
                 }
@@ -30,7 +31,7 @@ class Location {
             res.json({
                 status: httpStatusCodes.SUCCESS_CODE,
                 message: 'successfully listed',
-                data: locationData
+                data: occasionsData
             });
 
             return;
@@ -46,21 +47,21 @@ class Location {
     }
 
     /**
-     *  @api {post} /v1/location/add-location
-     *  @apiName addLocation
-     *  @apiGroup Location
+     *  @api {post} /v1/occasion/add-occasion
+     *  @apiName addOccasion
+     *  @apiGroup Occasion
      *
-     *  @apiSuccess {Object} Location
+     *  @apiSuccess {Object} Occasion
      */
-    async addLocation(req: Request, res: Response) {
-        logger.info('!!!!!!AddLocation function start!!!!!');
+    async addOccasion(req: Request, res: Response) {
+        logger.info('!!!!!!AddOccasion function start!!!!!');
         try {
-            const LocationAttributes = req.body;
+            const OccasionAttributes = req.body;
 
-            const location: LocationAttributes = await models.locations.create(LocationAttributes);
+            const occasion: OccasionAttributes = await models.occasions.create(OccasionAttributes);
 
-            if (location) {
-                res.json({ status: httpStatusCodes.SUCCESS_CODE, message: 'Location added successfully!', data: location });
+            if (occasion) {
+                res.json({ status: httpStatusCodes.SUCCESS_CODE, message: 'Occasionation added successfully!', data: occasion });
             }
         } catch (error: any) {
             console.log(`add location error ${error}`);
@@ -72,27 +73,27 @@ class Location {
     }
 
     /**
-     *  @api {post} /v1/location/update-location
-     *  @apiName updateLocation
-     *  @apiGroup Location
+     *  @api {post} /v1/occasion/update-occasion
+     *  @apiName updateOccasion
+     *  @apiGroup Occasion
      *
-     *  @apiSuccess {Object} Location
+     *  @apiSuccess {Object} Occasion
      */
-    async updateLocation(req: Request, res: Response) {
-        logger.info('!!!!!!UpdateLocation function start!!!!!');
-        try {
-            const LocationAttributes = req.body;
+    async updateOccasion(req: Request, res: Response) {
+        logger.info('!!!!!!UpdateOccasion function start!!!!!');
+        try { 
+            const OccasionAttributes = req.body;
             const id = req.params.id;
 
-            const location: LocationAttributes = await models.locations.update(LocationAttributes, {
+            const occasion: OccasionAttributes = await models.occasions.update(OccasionAttributes, {
                 where: { id: id }
             });
 
-            if (location) {
-                res.json({ status: httpStatusCodes.SUCCESS_CODE, message: 'City Updated successfully!', data: location });
+            if (occasion) {
+                res.json({ status: httpStatusCodes.SUCCESS_CODE, message: 'Occasion Updated successfully!', data: occasion });
             }
         } catch (error: any) {
-            console.log(`UpdateCity error ${error}`);
+            console.log(`UpdateOccasion error ${error}`);
             res.status(httpStatusCodes.SERVER_ERROR_CODE).json({
                 status: httpStatusCodes.SERVER_ERROR_CODE,
                 message: typeof error === 'string' ? error : typeof error.message === 'string' ? error.message : 500
@@ -101,18 +102,18 @@ class Location {
     }
 
     /**
-     *  @api {post} /v1/location/delete-location
-     *  @apiName deleteLocation
-     *  @apiGroup Location
+     *  @api {post} /v1/occasion/delete-occasion
+     *  @apiName deleteOccasion
+     *  @apiGroup Occasion
      *
-     *  @apiSuccess {Object} Location
+     *  @apiSuccess {Object} Occasion
      */
-    async deleteLocation(req: Request, res: Response) {
-        logger.info('!!!!!!DeleteLocation function start!!!!!');
+    async deleteOccasion(req: Request, res: Response) {
+        logger.info('!!!!!!DeleteOccasion function start!!!!!');
         try {
             const id = req.params.id;
 
-            const location: LocationAttributes = await models.locations.update(
+            const occasion: OccasionAttributes = await models.occasions.update(
                 {
                     _deleted: true
                 },
@@ -121,11 +122,11 @@ class Location {
                 }
             );
 
-            if (location) {
-                res.json({ status: httpStatusCodes.SUCCESS_CODE, message: 'Location deleted successfully!', data: location });
+            if (occasion) {
+                res.json({ status: httpStatusCodes.SUCCESS_CODE, message: 'Occasion deleted successfully!', data: occasion });
             }
         } catch (error: any) {
-            console.log(`delete location error ${error}`);
+            console.log(`delete occasion error ${error}`);
             res.status(httpStatusCodes.SERVER_ERROR_CODE).json({
                 status: httpStatusCodes.SERVER_ERROR_CODE,
                 message: typeof error === 'string' ? error : typeof error.message === 'string' ? error.message : 500
@@ -134,4 +135,4 @@ class Location {
     }
 }
 
-export default new Location();
+export default new Occasions();

@@ -53,37 +53,6 @@ class User {
             return;
         }
     }
-
-    /**
-     *  @api {post} /v1/user/signin
-     *  @apiName SignInUser
-     *  @apiGroup Users
-     *
-     *  @apiSuccess {Object} User
-     */
-    async register(req: Request, res: Response) { 
-        try {
-
-            console.log('Signing in');
-           
-            const UserAttributes = req.body;
-
-            const user: UserAttributes = models.users.create(UserAttributes); 
-            
-            console.log(`user after signin ${user}`); 
-
-            if (user) {
-                res.json({ status: httpStatusCodes.SUCCESS_CODE, message: 'User  created successfully!', data: user });
-            }
-        } catch (error: any) {
-            console.log(`user after signin ${error}`);
-            res.status(httpStatusCodes.SERVER_ERROR_CODE).json({
-                status: httpStatusCodes.SERVER_ERROR_CODE,
-                message: typeof error === 'string' ? error : typeof error.message === 'string' ? error.message : 500
-            });
-        }
-    }
 }
 
 export default new User();
- 
