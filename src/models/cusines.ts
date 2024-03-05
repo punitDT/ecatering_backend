@@ -4,8 +4,11 @@ import { Sequelize, UUIDV4, Model, Optional, BuildOptions } from 'sequelize';
 
 export interface CusineAttributes {
     id: string; // id is an auto-generated UUID
-    cusine_name: string;
-    category_id:string,
+    name: string;
+    category_id:string;
+    descirption? : string;
+    image?: string;
+    image_url? : string;
     is_active: boolean;
     _deleted: boolean;
     createdAt?: Date;
@@ -39,9 +42,22 @@ export default async (sequelize: Sequelize, DataTypes: any) => {
                 allowNull:false,
     
             },
-            cusine_name: {
+            name: {
                 type: DataTypes.STRING,
                 allowNull: true
+            },
+            descirption : {
+                type : DataTypes.STRING,
+                    allowNull :true,
+            
+            },
+            image:{
+                type : DataTypes.STRING,
+                allowNull :true,
+            },
+            image_url:{
+                type : DataTypes.STRING,
+                allowNull :true,
             },
             is_active: {
                 defaultValue:true,
@@ -49,6 +65,7 @@ export default async (sequelize: Sequelize, DataTypes: any) => {
                 allowNull: false
 
             },
+
             _deleted: {
                 type: DataTypes.BOOLEAN,
                 allowNull: true,

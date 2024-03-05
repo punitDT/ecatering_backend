@@ -5,8 +5,11 @@ import { Sequelize, UUIDV4, Model, Optional, BuildOptions } from 'sequelize';
 
 export interface CategoryAttributes {
     id: string; // id is an auto-generated UUID
-    category_name: string;
+    name: string;
+    description? :string;
     total_packages: number;
+    image?:String;
+    image_url? :string;
     is_active: boolean;
     _deleted: boolean;
     createdAt?: Date;
@@ -37,15 +40,27 @@ export default async (sequelize: Sequelize, DataTypes: any) => {
                 primaryKey: true,
                 defaultValue: UUIDV4
             },
-            category_name: {
+            name: {
                 type: DataTypes.STRING,
                 allowNull: true
+            },
+            description : {
+                type: DataTypes.STRING,
+                allowNull :true,
             },
             total_packages: {
                 type: DataTypes.INTEGER,
                 allowNull: true,
                 defaultValue:0,
                 
+            },
+            image:{
+                type : DataTypes.STRING,
+                allowNull :true,
+            },
+            image_url:{
+                type : DataTypes.STRING,
+                allowNull :true,
             },
             is_active: {
                 defaultValue:true,

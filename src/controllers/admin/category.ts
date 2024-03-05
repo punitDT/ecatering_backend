@@ -48,11 +48,14 @@ async getAllCategory(req:Request,res:Response)  {
             }
         );
 
+        const categoryCount = await newcategory.count();
+
         logger.info('Call all categories');
         res.json({
             status: httpStatusCodes.SUCCESS_CODE,
             message: 'successfully listed',
             data: category,
+            total : categoryCount,
         });
 
         return;
@@ -76,6 +79,7 @@ async updateCategory(req:Request,res:Response) {
     const id = req.body['id'];
     const catagoryName = req.body['category_name'];
     const isActive = req.body['is_active'];
+    if(id){
     const  newcategory  = await models.categories;
         const category : CategoryAttributes = await newcategory.update({
             category_name: catagoryName,
@@ -89,6 +93,12 @@ async updateCategory(req:Request,res:Response) {
         });
     
         return;
+    }else{
+        res.json({
+            status: httpStatusCodes.FORBIDDEN_CODE,
+            message: 'id is Required',
+        });
+    }
     }catch(error:any){
         logger.error(error);
                 res.status(httpStatusCodes.SERVER_ERROR_CODE).json({
@@ -105,20 +115,27 @@ async updateCategory(req:Request,res:Response) {
         
             const categorydata : CategoryAttributes = req.body;
         const id = req.query.id;
+       if(id){
         const  newcategory  = await models.categories;
-            const category : CategoryAttributes = await newcategory.update({
-                _deleted :true,
-            } , {
-            where: {id},
-            });
+        const category : CategoryAttributes = await newcategory.update({
+            _deleted :true,
+        } , {
+        where: {id},
+        });
 
 
-            res.json({
-                status: httpStatusCodes.SUCCESS_CODE,
-                message: 'Deleted Category Sucessfully',
-            });
-        
-            return;
+        res.json({
+            status: httpStatusCodes.SUCCESS_CODE,
+            message: 'Deleted Category Sucessfully',
+        });
+    
+        return;
+       }else{
+        res.json({
+            status: httpStatusCodes.FORBIDDEN_CODE,
+            message: 'id is Required',
+        });
+       }
         }catch(error:any){
             logger.error(error);
                     res.status(httpStatusCodes.SERVER_ERROR_CODE).json({
