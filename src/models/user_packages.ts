@@ -4,11 +4,11 @@ export interface UserPackageAttributes {
     id: string;
     package_id: string;
     menu_item_id: [];
-    user_id:string;
-    location_id:string,
-    custom:boolean;
-    is_veg:boolean,
-    is_non_veg :boolean;
+    user_id: string;
+    location_id: string;
+    custom: boolean;
+    is_veg: boolean;
+    is_non_veg: boolean;
     is_active?: boolean;
     _deleted?: boolean;
     createdAt?: Date;
@@ -19,7 +19,7 @@ interface UserPackageCreationAttribute extends Optional<UserPackageAttributes, '
 
 interface UserPackageInstance
     extends Model<UserPackageAttributes, UserPackageCreationAttribute>,
-    UserPackageAttributes {
+        UserPackageAttributes {
     createdAt?: Date;
     updatedAt?: Date;
 }
@@ -45,31 +45,27 @@ export default (sequelize: Sequelize, DataTypes: any) => {
             },
             menu_item_id: {
                 type: DataTypes.Array(DataTypes.UUID),
-                allowNull: false,
+                allowNull: false
             },
-            user_id:{
+            user_id: {
                 type: DataTypes.UUID,
-                allowNull :false,
+                allowNull: false
             },
-            location_id:{
+            location_id: {
                 type: DataTypes.UUID,
-                allowNull :false,
-
+                allowNull: false
             },
-            custom :{
-                type:DataTypes.BOOLEAN,
-                allowNull :true,
-
+            custom: {
+                type: DataTypes.BOOLEAN,
+                allowNull: true
             },
-            is_veg :{
-                type:DataTypes.BOOLEAN,
-                allowNull :true,
-
+            is_veg: {
+                type: DataTypes.BOOLEAN,
+                allowNull: true
             },
-            is_non_veg :{
-                type:DataTypes.BOOLEAN,
-                allowNull :true,
-
+            is_non_veg: {
+                type: DataTypes.BOOLEAN,
+                allowNull: true
             },
             is_active: {
                 type: DataTypes.BOOLEAN,
@@ -94,7 +90,7 @@ export default (sequelize: Sequelize, DataTypes: any) => {
         UserPackage.belongsTo(models.menu_items, {
             foreignKey: 'menu_item_id',
             onDelete: 'CASCADE',
-            onUpdate: 'CASCADE',
+            onUpdate: 'CASCADE'
         });
         UserPackage.belongsTo(models.locations, {
             foreignKey: 'location_id',
@@ -103,6 +99,11 @@ export default (sequelize: Sequelize, DataTypes: any) => {
         });
         UserPackage.belongsTo(models.users, {
             foreignKey: 'user_id',
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE'
+        });
+        UserPackage.hasMany(models.user_orders, {
+            foreignKey: 'user_package_id',
             onDelete: 'CASCADE',
             onUpdate: 'CASCADE'
         });

@@ -103,11 +103,11 @@ export default (sequelize: Sequelize, DataTypes: any) => {
             onUpdate: 'CASCADE'
         });
 
-        // UserOrders.belongsTo(models.user_packages, {
-        //     foreignKey: 'user_package_id',
-        //     onDelete: 'CASCADE',
-        //     onUpdate: 'CASCADE'
-        // });
+        UserOrders.belongsTo(models.user_package, {
+            foreignKey: 'user_package_id',
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE'
+        });
 
         UserOrders.hasMany(models.delivery_types, {
             foreignKey: 'order_id',
