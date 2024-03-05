@@ -73,11 +73,14 @@ async getAllCategory(req:Request,res:Response)  {
 
 async updateCategory(req:Request,res:Response) {
     try{
-    
-        const categorydata : CategoryAttributes = req.body;
-    const id = req.query.id;
+    const id = req.body['id'];
+    const catagoryName = req.body['category_name'];
+    const isActive = req.body['is_active'];
     const  newcategory  = await models.categories;
-        const category : CategoryAttributes = await newcategory.update(categorydata,{
+        const category : CategoryAttributes = await newcategory.update({
+            category_name: catagoryName,
+            is_active: isActive,
+        },{
             where: {id},
         });
         res.json({
