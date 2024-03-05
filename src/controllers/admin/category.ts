@@ -39,14 +39,14 @@ class Category {
                     _deleted: false
                 }
             });
-
+                
             logger.info('Call all categories');
             res.json({
                 status: httpStatusCodes.SUCCESS_CODE,
                 message: 'successfully listed',
                 data: category
             });
-
+        
             return;
         } catch (error: any) {
             logger.error(`Error getting all categories ${error}`);
@@ -98,7 +98,7 @@ class Category {
                     where: { id }
                 }
             );
-
+    
             res.json({
                 status: httpStatusCodes.SUCCESS_CODE,
                 message: 'Deleted Category Sucessfully'
@@ -106,7 +106,7 @@ class Category {
 
             return;
         } catch (error: any) {
-            logger.error(error);
+                    logger.error(error);
             res.status(httpStatusCodes.SERVER_ERROR_CODE).json({
                 status: httpStatusCodes.SERVER_ERROR_CODE,
                 message: typeof error === 'string' ? error : typeof error.message === 'string' ? error.message : 500
