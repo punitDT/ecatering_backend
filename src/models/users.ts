@@ -68,7 +68,19 @@ export default (sequelize: Sequelize, DataTypes: any) => {
             foreignKey: 'user_id',
             onDelete: 'CASCADE',
             onUpdate: 'CASCADE',
-            as: 'userRole'
+        });
+
+        Users.hasMany(models.user_shippings, {
+            foreignKey: 'user_id',
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE',
+        });
+
+
+        Users.hasMany(models.user_orders, {
+            foreignKey: 'user_id',
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE',
         });
     };
 

@@ -45,7 +45,6 @@ export default async (sequelize: Sequelize, DataTypes: any) => {
                 type: DataTypes.INTEGER,
                 allowNull: true,
                 defaultValue:0,
-                
             },
             is_active: {
                 defaultValue:true,

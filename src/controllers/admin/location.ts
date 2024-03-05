@@ -24,8 +24,8 @@ class Location {
             const locationData: LocationAttributes = await models.locations.findAll({
                 where: {
                     _deleted: false
-                }
-            });
+                },
+            },);
 
             res.json({
                 status: httpStatusCodes.SUCCESS_CODE,

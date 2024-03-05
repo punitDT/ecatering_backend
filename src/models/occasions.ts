@@ -1,9 +1,11 @@
 import { Sequelize, UUIDV4, Model, Optional, BuildOptions } from 'sequelize';
+import { checkNull } from '../utils/validators';
 
 export interface OccasionAttributes {
     id: string; // id is an auto-generated UUID
     name: string;
     description: string;
+    image: string;
     location_id: string;
     start_time?: Date;
     end_time?: Date;
@@ -44,7 +46,16 @@ export default (sequelize: Sequelize, DataTypes: any) => {
             },
             description: {
                 type: DataTypes.STRING,
-                allowNull: true
+                allowNull: true,
+                validate: {
+                    isNotNull: function (value) {
+                        checkNull('description', value);
+                    }
+                }
+            },
+            image: {
+                type: DataTypes.STRING,
+                allowNull: false
             },
             location_id: {
                 type: DataTypes.UUID,
@@ -90,7 +101,7 @@ export default (sequelize: Sequelize, DataTypes: any) => {
         Occasions.belongsTo(models.locations, {
             foreignKey: 'location_id',
             onDelete: 'CASCADE',
-            onUpdate: 'CASCADE',
+            onUpdate: 'CASCADE'
         });
 
         Occasions.hasOne(models.packages, {
@@ -103,6 +114,6 @@ export default (sequelize: Sequelize, DataTypes: any) => {
 
     // TODO: make common function to sync
     // await Occasions.sync({ alter: true });
- 
+
     return Occasions;
 };

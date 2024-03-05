@@ -85,7 +85,7 @@ class Occasions {
             const id = req.query.id;
 
             const occasion: OccasionAttributes = await models.occasions.update(OccasionAttributes, {
-                where: { id: id }
+                where: { id: id }, 
             });
 
             if (occasion) {

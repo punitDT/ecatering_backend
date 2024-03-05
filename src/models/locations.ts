@@ -91,6 +91,18 @@ export default (sequelize: Sequelize, DataTypes: any) => {
             onUpdate: 'CASCADE',
         });
 
+        Locations.hasMany(models.user_shippings, { 
+            foreignKey: 'location_id',
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE',
+        });
+
+        Locations.hasMany(models.delivery_types, { 
+            foreignKey: 'location_id',
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE',
+        });
+
     };
 
     // TODO: make common function to sync
